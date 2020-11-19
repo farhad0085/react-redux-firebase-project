@@ -1,11 +1,26 @@
-// import * as Types from '../actions/actionTypes'
+import * as Types from '../actions/actionTypes'
 
 const initialState = {
-    isAuth: false
+    authError: ''
 }
 
 function authReducer(state = initialState, action) {
     switch (action.type) {
+        
+        case Types.LOGIN_ERROR: {
+            return {
+                ...state,
+                authError: "Login failed "
+            }
+        }
+
+        case Types.LOGIN_SUCCESS: {
+            return {
+                ...state,
+                authError: ''
+            }
+        }
+
         default: return state
     }
 }
