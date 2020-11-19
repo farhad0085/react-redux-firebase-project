@@ -11,7 +11,7 @@ export const createProject = project => (dispatch, getState, { getFirebase, getF
         createdAt: new Date()
     })
     .then(res => {
-        console.log("Firebase response", res);
+        // console.log("Firebase response", res);
         dispatch({ type: Types.CREATE_PROJECT, project })
     })
     .catch(err => {
