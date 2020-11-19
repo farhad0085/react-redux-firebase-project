@@ -15,6 +15,10 @@ function projectReducer(state = initialState, action) {
         case Types.CREATE_PROJECT: {
             return state
         }
+        case Types.CREATE_PROJECT_ERROR: {
+            console.log(action.err);
+            return state
+        }
         default: return state
     }
 

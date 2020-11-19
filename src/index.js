@@ -3,11 +3,18 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import './index.css'
 import { Provider } from "react-redux";
-import store from './store';
+import {store, rrfProps } from './store';
+import { ReactReduxFirebaseProvider } from "react-redux-firebase";
+import firebaseConfig from './config/firebaseConfig'
+
+
+
 
 ReactDOM.render(
     <Provider store={store}>
-        <App />
+        <ReactReduxFirebaseProvider {...rrfProps} firebase={firebaseConfig}>
+            <App />
+        </ReactReduxFirebaseProvider>
     </Provider>,
     document.getElementById('root')
 );

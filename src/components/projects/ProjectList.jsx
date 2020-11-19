@@ -1,6 +1,8 @@
 import React from 'react'
 import ProjectSummary from './ProjectSummary'
-
+import { connect } from "react-redux";
+import { firestoreConnect } from "react-redux-firebase";
+import { compose } from "redux";
 
 const ProjectList = ({projects}) => {
 
@@ -13,4 +15,14 @@ const ProjectList = ({projects}) => {
 }
 
 
-export default ProjectList
+const mapStateToProps = state => {
+    console.log(state);
+    return {
+        projects: state.firestore.ordered.projects
+    }
+}
+
+export default compose(
+    connect(mapStateToProps),
+    firestoreConnect([{collection: 'projects'}]),
+)(ProjectList)
