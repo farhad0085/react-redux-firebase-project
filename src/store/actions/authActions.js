@@ -1,11 +1,8 @@
 import * as Types from './actionTypes'
 
-export const signIn = credentials => (dispatch, getFirebase) => {
+export const signIn = ({email, password}) => (dispatch, getState, {getFirebase}) => {
     const firebase = getFirebase();
-
-    firebase.auth.signInWithEmailAndPassword(
-        ...credentials
-    )
+    firebase.auth().signInWithEmailAndPassword(email, password)
     .then(() => {
         console.log("Login success");
         dispatch({type: Types.LOGIN_SUCCESS})

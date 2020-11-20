@@ -10,7 +10,7 @@ function authReducer(state = initialState, action) {
         case Types.LOGIN_ERROR: {
             return {
                 ...state,
-                authError: "Login failed "
+                authError: action.err.message
             }
         }
 
