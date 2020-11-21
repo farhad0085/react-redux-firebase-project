@@ -1,7 +1,8 @@
 import * as Types from '../actions/actionTypes'
 
 const initialState = {
-    authError: ''
+    authErrorSignIn: '',
+    authErrorSignUp: ''
 }
 
 function authReducer(state = initialState, action) {
@@ -10,21 +11,21 @@ function authReducer(state = initialState, action) {
         case Types.LOGIN_ERROR: {
             return {
                 ...state,
-                authError: action.err.message
+                authErrorSignIn: action.err.message
             }
         }
 
         case Types.LOGIN_SUCCESS: {
             return {
                 ...state,
-                authError: ''
+                authErrorSignIn: ''
             }
         }
         case Types.SIGNUP_SUCCESS: {
             console.log("Signup success");
             return {
                 ...state,
-                authError: ''
+                authErrorSignUp: ''
             }
         }
 
@@ -32,7 +33,7 @@ function authReducer(state = initialState, action) {
             console.log("Signup error", action.err);
             return {
                 ...state,
-                authError: action.err.message
+                authErrorSignUp: action.err.message
             }
         }
 
