@@ -15,6 +15,18 @@ export const signUp = ({ email, password, firstName, lastName }) => {
             })
             .then(() => {
                 dispatch({type: Types.SIGNUP_SUCCESS})
+                
+                
+                // create new notification object
+                firestore.collection('notifications').add({
+                    content: 'Joined the clan',
+                    user: `${firstName} ${lastName}`,
+                    time: new Date()
+                })
+                .then((res) => console.log(res))
+                .catch((err) => console.log(err))
+
+
             })
             .catch(err => {
                 dispatch({type: Types.SIGNUP_ERROR, err})

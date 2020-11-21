@@ -7,6 +7,8 @@ export const createProject = project => (dispatch, getState, { getFirebase, getF
     const profile = getState().firebase.profile
     const authorId = getState().firebase.auth.uid
 
+    
+
     firestore.collection('projects').add({
         ...project,
         authorFirstName: profile.firstName,
@@ -16,6 +18,18 @@ export const createProject = project => (dispatch, getState, { getFirebase, getF
     })
     .then(() => {
         dispatch({ type: Types.CREATE_PROJECT, project })
+
+
+        // create new notification object
+        firestore.collection('notifications').add({
+            content: 'Added a new project',
+            user: `${profile.firstName} ${profile.lastName}`,
+            time: new Date()
+        })
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err))
+
+
     })
     .catch(err => {
         console.log(err);
