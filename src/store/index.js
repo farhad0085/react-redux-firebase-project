@@ -11,7 +11,7 @@ const store = createStore(
     rootReducer,
     compose(
         applyMiddleware(thunk.withExtraArgument({ getFirebase, getFirestore })),
-        reactReduxFirebase(firebaseConfig), // redux binding for firebase
+        reactReduxFirebase(firebaseConfig, {attachAuthIsReady: true}), // redux binding for firebase
         reduxFirestore(firebaseConfig),
         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
