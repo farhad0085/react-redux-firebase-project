@@ -14,3 +14,14 @@ export const signIn = ({email, password}) => (dispatch, getState, {getFirebase})
     })
 
 }
+
+export const signOut = () => (dispatch, getState, {getFirebase}) => {
+    const firebase = getFirebase()
+    console.log("Signout called");
+
+    firebase.auth().signOut()
+    .then(() => {
+        console.log("Signout success");
+        dispatch({type: Types.SIGNOUT_SUCCESS})
+    })
+}

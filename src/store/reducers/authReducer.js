@@ -21,6 +21,10 @@ function authReducer(state = initialState, action) {
             }
         }
 
+        case Types.SIGNOUT_SUCCESS: {
+            return state
+        }
+
         default: return state
     }
 }
