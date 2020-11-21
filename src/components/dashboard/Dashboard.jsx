@@ -4,7 +4,6 @@ import Notifications from './Notifications'
 import { firestoreConnect } from "react-redux-firebase";
 import { connect } from 'react-redux'
 import { compose } from "redux";
-import Loading from '../others/Loading'
 
 class Dashboard extends Component {
 
@@ -16,14 +15,6 @@ class Dashboard extends Component {
             <div className="dashboard container">
                 <div className="row">
                     <div className="col s12 m6">
-                        {this.props.loading && (
-                            <div className="m5">
-                                <br/>
-                                <br/>
-                                <br/>
-                            <Loading color="#FF0000" />
-                            </div>
-                        ) }
                         <ProjectList />
                     </div>
                     <div className="col s12 m5 offset-m1">
@@ -37,7 +28,6 @@ class Dashboard extends Component {
 
 const mapStateToProps = state => {
     return {
-        loading: state.firestore.status.requesting.projects
     }
 }
 
