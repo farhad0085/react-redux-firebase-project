@@ -20,6 +20,21 @@ function authReducer(state = initialState, action) {
                 authError: ''
             }
         }
+        case Types.SIGNUP_SUCCESS: {
+            console.log("Signup success");
+            return {
+                ...state,
+                authError: ''
+            }
+        }
+
+        case Types.SIGNUP_ERROR: {
+            console.log("Signup error", action.err);
+            return {
+                ...state,
+                authError: action.err.message
+            }
+        }
 
         case Types.SIGNOUT_SUCCESS: {
             return state

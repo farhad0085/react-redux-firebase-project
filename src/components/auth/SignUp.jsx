@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { signUp } from "../../store/actions/authActions";
+import { connect } from 'react-redux'
+import ErrorMessage from '../others/ErrorMessage';
 
 
 class SignUp extends Component {
@@ -13,7 +16,7 @@ class SignUp extends Component {
     submitHandler = event => {
         event.preventDefault()
 
-        console.log(this.state);
+        this.props.signUp(this.state);
 
     }
 
@@ -24,6 +27,9 @@ class SignUp extends Component {
     }
 
     render() {
+        
+        const {authError} = this.props
+
         return (
             <div className="container">
                 <form onSubmit={this.submitHandler} className="white">
@@ -46,6 +52,7 @@ class SignUp extends Component {
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">Signup</button>
+                        {authError && <ErrorMessage message={authError}/>}
                     </div>
                 </form>
             </div>
@@ -53,5 +60,16 @@ class SignUp extends Component {
     }
 }
 
+const mapStateToProps = state => {
+   return {
+       authError: state.auth.authError
+   }
+}
 
-export default SignUp
+const mapDispatchToProps = dispatch => {
+   return {
+       signUp: (newUser) => dispatch(signUp(newUser))
+   }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

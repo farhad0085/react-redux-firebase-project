@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { signIn } from "../../store/actions/authActions";
 import { connect } from 'react-redux'
+import ErrorMessage from '../others/ErrorMessage';
 
 class SignIn extends Component {
 
@@ -41,9 +42,7 @@ class SignIn extends Component {
                     </div>
                     <div className="input-field">
                         <button className="btn pink lighten-1 z-depth-0">Login</button>
-                        <div className="red-text">
-                            {authError && <p>{authError}</p>}
-                        </div>
+                        {authError && <ErrorMessage message={authError}/>}
                     </div>
                 </form>
             </div>
